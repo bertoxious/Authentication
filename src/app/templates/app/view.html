@@ -1,0 +1,24 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block base %}
+    <div class="content-form m-5 p-5">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{message.tags}}" role="alert">{{message}}</div>
+            {% endfor %}
+        {% endif %}
+        <h1>Hi {{user.username}} here are your details</h1>
+        <form class="row g-3 col-6" method="POST">
+            {% csrf_token %}
+                {{education|crispy}}
+            <a href="{% url 'detail' user.id%}"><button type="submit" class="btn btn-outline-primary btn-lg mt-4">Save</button></a>
+        </form>
+        <a href="{% url 'deleted' user.id %}">
+        <button type="button" class=" btn btn-outline-danger mt-4 col-3">Delete Account</button>
+        </a>
+        <a href={% url 'logout' %}>
+        <button type="button" class=" btn btn-outline-warning mt-4 col-3">Logout</button>
+        </a>
+    </div>
+{% endblock %}

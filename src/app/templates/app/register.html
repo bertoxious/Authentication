@@ -1,0 +1,12 @@
+{% extends 'app/base.html' %} {% load static %} {% load crispy_forms_tags %}
+{% block base %}
+<div class="d-flex-column m-5 p-5 content-form">
+  <form class="p-2 bootstrap4" method="POST">
+  <legend>User Registration</legend>
+  {% csrf_token %}
+   {{form|crispy}}
+  <button type="submit" class="btn btn-success mb-4 mt-2">Register</button>
+  </form>
+  <p class="text-muted">Already have an account ?<a  href="{% url 'login'%}">Login Here</a></p>
+</div>
+{% endblock %}
